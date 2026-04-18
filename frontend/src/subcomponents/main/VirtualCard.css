@@ -1,0 +1,194 @@
+.virtual-card-page {
+    position: relative;
+    z-index: 2;
+    width: min(1180px, 100%);
+    display: grid;
+    gap: 22px;
+}
+
+.virtual-card-page__grid {
+    display: grid;
+    grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1.08fr);
+    gap: 22px;
+}
+
+.virtual-card-page__hero,
+.virtual-card-page__panel {
+    border: 1px solid var(--surface-outline);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    background: var(--surface);
+    backdrop-filter: blur(18px);
+}
+
+.virtual-card-page__hero .card-body,
+.virtual-card-page__panel .card-body {
+    padding: 30px;
+}
+
+.virtual-card-page__hero {
+    color: #f7f2e7;
+    background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.14), transparent 24%),
+        linear-gradient(135deg, #0f3245 0%, #16536c 46%, #c08a3f 100%);
+}
+
+.virtual-card-page__eyebrow {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.78rem;
+    opacity: 0.72;
+}
+
+.virtual-card-page__hero h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.virtual-card-page__hero p:last-of-type {
+    margin-top: 18px;
+    line-height: 1.8;
+    color: rgba(247, 242, 231, 0.82);
+}
+
+.virtual-card-page__actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.virtual-card-page__button {
+    border: none;
+    min-height: 48px;
+    padding: 0 18px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #0f4a3f, #1d6854);
+}
+
+.virtual-card-page__button--ghost {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fffaf1;
+}
+
+.virtual-card-page__button--ghost:hover,
+.virtual-card-page__button--ghost:focus {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fffaf1;
+}
+
+.virtual-card-page__card {
+    padding: 28px;
+    border-radius: 28px;
+    color: #fffaf1;
+    background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.16), transparent 28%),
+        linear-gradient(145deg, #113346 0%, #184d66 52%, #c08a3f 100%);
+}
+
+.virtual-card-page__visa {
+    margin: 0 0 30px;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+}
+
+.virtual-card-page__card strong {
+    display: block;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    letter-spacing: 0.14em;
+}
+
+.virtual-card-page__meta {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 26px;
+}
+
+.virtual-card-page__meta span,
+.virtual-card-page__meta small {
+    display: block;
+}
+
+.virtual-card-page__meta span {
+    margin-bottom: 6px;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 250, 241, 0.72);
+}
+
+.virtual-card-page__meta small {
+    font-size: 0.98rem;
+    color: #fffaf1;
+}
+
+.virtual-card-page__notes {
+    display: grid;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.virtual-card-page__notes div {
+    padding: 18px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(15, 74, 63, 0.08);
+}
+
+.virtual-card-page__notes span {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.virtual-card-page__notes strong {
+    font-size: 1rem;
+}
+
+.virtual-card-page__empty {
+    padding: 32px 24px;
+    border-radius: 24px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px dashed rgba(15, 74, 63, 0.18);
+}
+
+.virtual-card-page__empty h4 {
+    margin: 0 0 8px;
+}
+
+.virtual-card-page__empty p {
+    margin: 0;
+    color: var(--ink-soft);
+    line-height: 1.7;
+}
+
+@media (max-width: 980px) {
+    .virtual-card-page__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .virtual-card-page__hero .card-body,
+    .virtual-card-page__panel .card-body {
+        padding: 22px;
+    }
+
+    .virtual-card-page__actions,
+    .virtual-card-page__meta {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+
+    .virtual-card-page__button {
+        width: 100%;
+    }
+}
