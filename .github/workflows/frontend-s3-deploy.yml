@@ -17,6 +17,9 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     env:
       AWS_REGION: ${{ vars.AWS_REGION }}
       S3_BUCKET_NAME: ${{ vars.S3_BUCKET_NAME }}
@@ -49,20 +52,6 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
 
-      - name: Validate required repository secrets
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          if [ -z "${AWS_ACCESS_KEY_ID}" ]; then
-            echo "Missing repository secret: AWS_ACCESS_KEY_ID"
-            exit 1
-          fi
-          if [ -z "${AWS_SECRET_ACCESS_KEY}" ]; then
-            echo "Missing repository secret: AWS_SECRET_ACCESS_KEY"
-            exit 1
-          fi
-
       - name: Install frontend dependencies
         run: npm ci --prefix frontend
 
@@ -72,8 +61,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v5
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: arn:aws:iam::678536383119:role/GitHubActionsFrontendDeployRole
+          role-session-name: github-actions-frontend-deploy
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Verify AWS identity
