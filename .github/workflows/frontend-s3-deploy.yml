@@ -81,5 +81,5 @@ jobs:
             --content-type "text/html"
 
       - name: Invalidate CloudFront cache
-        if: ${{ env.CLOUDFRONT_DISTRIBUTION_ID != '' }}
+        if: ${{ env.CLOUDFRONT_DISTRIBUTION_ID != '' && startsWith(env.CLOUDFRONT_DISTRIBUTION_ID, 'E') }}
         run: aws cloudfront create-invalidation --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" --paths "/*"
